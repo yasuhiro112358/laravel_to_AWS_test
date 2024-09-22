@@ -23,6 +23,10 @@ cd backend
 デフォルトで問題なし
 デプロイ前にAWSの設定に合わせる
 
+### phpMyAdminの追加
+手動でbackend/docker-compose.ymlに設定を記載
+8081ポートに設定
+
 ### Dockerの再起動
 ```
 ./vendor/bin/sail down
