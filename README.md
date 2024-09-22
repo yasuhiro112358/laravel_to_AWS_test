@@ -37,3 +37,36 @@ cd backend
 ```
 ./vendor/bin/sail artisan migrate
 ```
+
+### AWSの設定
+* インスタンスにSSH接続をして行う
+```
+# Apache Webサーバーのインストール
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+# PHPのインストール
+sudo amazon-linux-extras enable php8.0
+sudo yum clean metadata
+sudo yum install php php-mbstring php-xml php-bcmath php-json php-zip php-pdo php-fpm -y
+
+# Composerのインストール
+sudo yum install composer -y
+
+# MyAQLクライアントのインストール
+sudo yum install mysql -y
+
+# Gitのインストール
+```
+sudo yum install git -y
+```
+
+# Laravelプロジェクトを配置
+cd /var/www
+# 自分のリポジトリからクローン
+sudo git clone https://github.com/yasuhiro112358/laravel_to_AWS_test
+# backendディレクトリをlaravelディレクトリにリネームして移動
+sudo mv laravel_to_aws_test/backend laravel
+```
