@@ -9,13 +9,27 @@ curl -s https://laravel.build/my-laravel-project | bash
 php artisan sail:install
 ```
 
+### Dockerコンテナの起動
 ```
 # Laravelのルートに移動
 cd backend
 
 # Dockerを起動
 ./vendor/bin/sail up
+# デフォルトでは80番ポートで起動される
+```
 
-# Migration
+### .envの編集
+デフォルトで問題なし
+デプロイ前にAWSの設定に合わせる
+
+### Dockerの再起動
+```
+./vendor/bin/sail down
+./vendor/bin/sail up
+```
+
+### Migration
+```
 ./vendor/bin/sail artisan migrate
 ```
