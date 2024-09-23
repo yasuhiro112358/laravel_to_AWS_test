@@ -38,6 +38,10 @@ cd backend
 ./vendor/bin/sail artisan migrate
 ```
 
+### AWSでインスタンスの作成
+手動
+EC2とRDSのインスタンスを作成
+
 ### AWSの設定
 * インスタンスにSSH接続をして行う
 ```
@@ -71,8 +75,6 @@ sudo dnf install php-mysqlnd -y
 sudo dnf -y localinstall https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
 sudo dnf -y install mysql mysql-community-client
-
-
 
 # Gitのインストール
 sudo yum install git -y
@@ -146,6 +148,4 @@ sudo php artisan migrate --force
 sudo php artisan config:clear
 sudo php artisan route:clear
 sudo php artisan cache:clear
-
-
 ```
