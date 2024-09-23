@@ -64,6 +64,16 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 composer --version
 
+# PHP MySQLドライバーのインストール
+sudo dnf install php-mysqlnd -y
+
+# MySQLクライアントのインストール
+sudo dnf -y localinstall https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+sudo dnf -y install mysql mysql-community-client
+
+
+
 # Gitのインストール
 sudo yum install git -y
 
@@ -113,18 +123,24 @@ sudo nano /etc/httpd/conf/httpd.conf
 # Apacheの再起動
 sudo systemctl restart httpd
 
-# .envファイルの編集
+# .envファイルの作成と編集
+sudo cp .env.example .env
+
+sudo php artisan key:generate
 sudo nano /var/www/laravel/.env
 
 * 設定例
-APP_URL=http://your-ec2-ip
+APP_URL=52.192.45.4
+
 DB_CONNECTION=mysql
-DB_HOST=your-rds-endpoint
+DB_HOST=dev-laravel-db-rds-ap-northeast-1a.c78aam860x7j.ap-northeast-1.rds.amazonaws.com
 DB_PORT=3306
-DB_DATABASE=your-database-name
-DB_USERNAME=your-username
-DB_PASSWORD=your-password
-# おそらくAPP_URLとDB_HOSTのみ
+DB_DATABASE=dev-laravel # RDS
+DB_USERNAME=admin # RDS
+DB_PASSWORD=password # RDS
+
+# Migration
+sudo php artisan migrate --force
 
 # キャッシュのクリア
 sudo php artisan config:clear
